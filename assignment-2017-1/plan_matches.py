@@ -48,7 +48,6 @@ for match in matches:
         else:
             g[t].append([a, b])
             break
-print g
 
 for key in g:
     for match in g[key]:
