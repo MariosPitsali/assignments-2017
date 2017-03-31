@@ -1,3 +1,4 @@
+from operator import itemgetter
 input_filename = "graph_file.txt"
 matches =[]
 times = []
@@ -48,10 +49,19 @@ for match in matches:
         else:
             g[t].append([a, b])
             break
-
+lst =[]
 for key in g:
     for match in g[key]:
-        print tuple(match), key
+        lst.append(sorted(match))
 
+        
+new_lst = sorted(lst, key=itemgetter(0,1))
+for i in range(0, len(new_lst)):
+    for key in g:
+        for match in g[key]:
+            revmatch = list(reversed(match))
+            if match == new_lst[i] or revmatch == new_lst[i]:
+                print tuple(new_lst[i]), key
+    
 
 
