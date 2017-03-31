@@ -27,7 +27,6 @@ def in_graph_line(g,a,b,key):
     is_there = None
     if g[key]!=[]:
         for pair in g[key]:
-            print "Examines pair", pair
             if a in pair or b in pair:
                 is_there = True
             else:
@@ -38,25 +37,22 @@ def in_graph_line(g,a,b,key):
 
 for match in matches:
     a=match[0]
-    print a
     b=match[1]
-    print b
     #since we know it's exactly two opponents
     for i in range (0,length+1):
         t=i
         is_in_line = in_graph_line(g,a,b,t)
-        print "Goes to day", t
-        print is_in_line
         while is_in_line:
             t = t+1
-            print "Goes to day", t
             is_in_line =in_graph_line(g,a,b,t)
-            print is_in_line
         else:
             g[t].append([a, b])
-            print "Graph is", g
             break
-   
+print g
+
+for key in g:
+    for match in g[key]:
+        print tuple(match), key
 
 
 
