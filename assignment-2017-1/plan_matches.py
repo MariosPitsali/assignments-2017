@@ -19,20 +19,22 @@ def find_max(lst):
 
 length = find_max(times)
 
-print "Matches are", matches
-
 for day in range(0, length+1):
     g[day]=[]
-print g
 
 def in_graph_line(g,a,b,key):
 #is any of the players playing that day?
-    for pair in g[key]:
-        print "Pair examined is", pair
-        if a in pair or b in pair:
-            return True
-        else:
-            return False
+    is_there = None
+    if g[key]!=[]:
+        for pair in g[key]:
+            print "Examines pair", pair
+            if a in pair or b in pair:
+                is_there = True
+            else:
+                is_there = False
+    else:
+        return False
+    return is_there
 
 for match in matches:
     a=match[0]
@@ -43,15 +45,18 @@ for match in matches:
     for i in range (0,length+1):
         t=i
         is_in_line = in_graph_line(g,a,b,t)
+        print "Goes to day", t
+        print is_in_line
         while is_in_line:
             t = t+1
+            print "Goes to day", t
             is_in_line =in_graph_line(g,a,b,t)
+            print is_in_line
         else:
             g[t].append([a, b])
             print "Graph is", g
             break
-
-print g    
+   
 
 
 
